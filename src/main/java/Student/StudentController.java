@@ -22,7 +22,7 @@ public class StudentController {
 
 
    //find by id
-    @GetMapping("/student/{id}/")
+    @GetMapping("/sstudent/{id}/")
     Student getbyId(@PathVariable Long id){
         return repository.findById(id)
         .orElseThrow(() -> new StudentNotFoundException(id));
