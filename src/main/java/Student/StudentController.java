@@ -14,7 +14,7 @@ public class StudentController {
     }
 
     //display
-    @GetMapping("/student")
+    @GetMapping("/allstudent")
     List<Student> all(){
      // return new Student("ihame", "gilbert", 23, "male", "student");
    return repository.findAll();
@@ -29,7 +29,7 @@ public class StudentController {
     }
 
     //save
-    @PostMapping("/student")
+    @PostMapping("/addstudent")
     Student save(@RequestBody Student newStudent){
         return repository.save(newStudent);
     }
@@ -50,7 +50,7 @@ public class StudentController {
 
 
     //delete
-    @DeleteMapping("/student/{id}")
+    @DeleteMapping("/delstudent/{id}")
     void delete(@PathVariable Long id){
         repository.deleteById(id);
     }
