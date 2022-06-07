@@ -14,7 +14,7 @@ public class StudentController {
     }
 
     //display
-    @GetMapping("/allstudent/")
+    @GetMapping("/")
     List<Student> all(){
      // return new Student("ihame", "gilbert", 23, "male", "student");
    return repository.findAll();
