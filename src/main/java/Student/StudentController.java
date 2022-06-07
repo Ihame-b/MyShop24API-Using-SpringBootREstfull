@@ -22,20 +22,20 @@ public class StudentController {
 
 
    //find by id
-    @GetMapping("/sstudent/{id}/")
+    @GetMapping("/sstudent/{id}")
     Student getbyId(@PathVariable Long id){
         return repository.findById(id)
         .orElseThrow(() -> new StudentNotFoundException(id));
     }
 
     //save
-    @PostMapping("/addstudent/")
+    @PostMapping("/addstudent")
     Student save(@RequestBody Student newStudent){
         return repository.save(newStudent);
     }
 
     //update
-    @PutMapping("/student/{id}/")
+    @PutMapping("/student/{id}")
    Optional<Student> update(@PathVariable Long id, @RequestBody Student newStudent){
       return   repository.findById(id).map(student -> {
             student.setAge(newStudent.getAge());
@@ -50,7 +50,7 @@ public class StudentController {
 
 
     //delete
-    @DeleteMapping("/delstudent/{id}/")
+    @DeleteMapping("/delstudent/{id}")
     void delete(@PathVariable Long id){
         repository.deleteById(id);
     }
