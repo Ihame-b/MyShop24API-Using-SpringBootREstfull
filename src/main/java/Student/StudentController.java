@@ -50,7 +50,7 @@ public class StudentController {
 
 
     //delete
-    @DeleteMapping("/delstudent/{id}")
+    @DeleteMapping("/delstudent/{id}/")
     void delete(@PathVariable Long id){
         repository.deleteById(id);
     }
