@@ -1,11 +1,11 @@
 package Student;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api")
 public class StudentController {
     private StudentRepository repository;
 
@@ -19,7 +19,6 @@ public class StudentController {
      // return new Student("ihame", "gilbert", 23, "male", "student");
    return repository.findAll();
    }
-
 
    //find by id
     @GetMapping("/sstudent/{id}/")
@@ -47,12 +46,12 @@ public class StudentController {
         });
     }
 
-
-
     //delete
     @DeleteMapping("/delstudent/{id}/")
     void delete(@PathVariable Long id){
         repository.deleteById(id);
     }
+
+
 
 }

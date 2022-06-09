@@ -1,5 +1,4 @@
 package Student;
-
 public class StudentNotFoundException extends  RuntimeException {
 
     StudentNotFoundException(Long id){
