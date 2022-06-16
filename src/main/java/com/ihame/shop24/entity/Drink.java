@@ -1,9 +1,11 @@
-package com.ihame.shop24;
+package com.ihame.shop24.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,21 +13,28 @@ public class Drink {
 
     public Drink() {
     }
-//
-//    private @Id @GeneratedValue Long id;
-//    private String firstname;
-//    private String lastname;
-//    private int age;
-//    private String gender;
-//    private String category;
 
-
+//    @Column(name = "drink_id")
     private @Id @GeneratedValue Long id;
     private String name;
     private String quality;
     private Date expiredDate;
     private int  price;
     private String category;
+
+     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+     @JoinColumn(name = "cargo_id", nullable = false)
+     @OnDelete(action = OnDeleteAction.CASCADE)
+     @JsonIgnore
+     private Cargo cargo;
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
 
     public Long getId() {
         return id;
@@ -85,55 +94,4 @@ public class Drink {
         this.category = category;
     }
 
-    //    public String getFirstname() {
-//        return firstname;
-//    }
-//
-//    public void setFirstname(String firstname) {
-//        this.firstname = firstname;
-//    }
-//
-//    public String getLastname() {
-//        return lastname;
-//    }
-//
-//    public void setLastname(String lastname) {
-//        this.lastname = lastname;
-//    }
-//
-//    public int getAge() {
-//        return age;
-//    }
-//
-//    public void setAge(int age) {
-//        this.age = age;
-//    }
-//
-//    public String getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(String gender) {
-//        this.gender = gender;
-//    }
-//
-//    public String getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(String category) {
-//        this.category = category;
-//    }
-//
-//
-//
-//
-//    public Drink(String firstname, String lastname, int age, String gender, String category) {
-//
-//        this.firstname = firstname;
-//        this.lastname = lastname;
-//        this.age = age;
-//        this.gender = gender;
-//        this.category = category;
-//    }
 }

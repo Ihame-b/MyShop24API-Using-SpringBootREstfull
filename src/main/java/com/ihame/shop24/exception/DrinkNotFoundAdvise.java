@@ -1,4 +1,4 @@
-package com.ihame.shop24.service;
+package com.ihame.shop24.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

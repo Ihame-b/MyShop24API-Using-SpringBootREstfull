@@ -1,4 +1,4 @@
-package com.ihame.shop24.service;
+package com.ihame.shop24.exception;
 public class DrinkNotFoundException extends  RuntimeException {
 
     public DrinkNotFoundException(Long id){
