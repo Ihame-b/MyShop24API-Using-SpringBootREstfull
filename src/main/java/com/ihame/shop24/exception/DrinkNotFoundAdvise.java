@@ -1,14 +1,14 @@
-package Student;
+package com.ihame.shop24.service;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @ControllerAdvice
-public class StudentNotFoundAdvise {
+public class DrinkNotFoundAdvise {
 
     @ResponseBody
-    @ExceptionHandler(StudentNotFoundException.class)
+    @ExceptionHandler(DrinkNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-   String studentNotFoundHandler( StudentNotFoundException ex){
+   String drinkNotFoundHandler( DrinkNotFoundException ex){
      return ex.getMessage();
     }
 }

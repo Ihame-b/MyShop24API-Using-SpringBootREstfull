@@ -13,10 +13,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @SpringBootApplication
 @EnableSwagger2
-public class StudentApplication {
+public class DrinkApplication {
 
     public static void main(String[] args){
-        SpringApplication.run(StudentApplication.class, args);
+        SpringApplication.run(DrinkApplication.class, args);
     }
 
     @Bean
