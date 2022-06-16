@@ -1,13 +1,37 @@
 package com.ihame.shop24.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Order1 {
     public Order1() {
+    }
+
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "drink_id")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnore
+//    List<Drink> drink;
+
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    Client client;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Id

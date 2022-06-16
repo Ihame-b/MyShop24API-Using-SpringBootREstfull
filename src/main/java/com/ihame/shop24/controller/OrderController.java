@@ -2,6 +2,8 @@ package com.ihame.shop24.controller;
 import com.ihame.shop24.dao.OrderRepository;
 import com.ihame.shop24.entity.Order1;
 import com.ihame.shop24.exception.OrderNotFoundException;
+import com.ihame.shop24.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,34 +14,37 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class OrderController {
 
-    private OrderRepository repository;
-    public OrderController(OrderRepository repository) {
-        this.repository = repository;
+    @Autowired
+    private OrderRepository orderrepository;
+    @Autowired
+    private OrderService orderService;
+    public OrderController(OrderRepository orderrepository) {
+        this.orderrepository = orderrepository;
     }
 
     //display
     @GetMapping("/allorder")
     List<Order1> all(){
-        return repository.findAll();
+        return orderrepository.findAll();
     }
 
     //find by id
     @GetMapping("/order/{id}/")
     Order1 getbyId(@PathVariable Long id){
-        return repository.findById(id)
+        return orderrepository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
     }
 
     //save
     @PostMapping("/addorder/")
     Order1 save(@RequestBody Order1 newOrder){
-        return repository.save(newOrder);
+        return orderrepository.save(newOrder);
     }
 
     //update
     @PutMapping("/updateorder/{id}/")
     Optional<Order1> update(@PathVariable Long id, @RequestBody Order1 newOrder){
-        return   repository.findById(id).map(order1 -> {
+        return   orderrepository.findById(id).map(order1 -> {
             order1.setName(newOrder.getName());
             order1.setTotalCost(newOrder.getTotalCost());
 
@@ -50,9 +55,15 @@ public class OrderController {
     //delete
     @DeleteMapping("/daleteorder/{id}/")
     void delete(@PathVariable Long id){
-        repository.deleteById(id);
+        orderrepository.deleteById(id);
     }
 
+    @PostMapping("/createordertoclient/{client_id}/{drinks_ids}")
+    Optional<Object> createOrder(@PathVariable Long client_id, @PathVariable List<Long> drinks_ids, @RequestBody Order1 orderRequest){
 
+        Optional<Object> order1= orderService.CreateOrderOfSpecificClient(client_id,drinks_ids,orderRequest);
+
+      return order1;
+    }
 
 }

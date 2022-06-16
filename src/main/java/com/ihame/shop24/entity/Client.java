@@ -1,5 +1,6 @@
 package com.ihame.shop24.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,10 +8,12 @@ import javax.persistence.Id;
 @Entity
 public class Client {
 
+
     private String name;
     private String address;
     @Id
     @GeneratedValue()
+    @Column(name = "client_id")
     private Long id;
     private int Quntity;
 

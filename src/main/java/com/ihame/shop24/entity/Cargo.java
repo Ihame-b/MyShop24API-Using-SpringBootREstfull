@@ -19,6 +19,7 @@ public class Cargo {
     private Date startDate;
     private Date DeriveredDate;
 
+
     //relationship
 //    @OneToMany(mappedBy = "cargo")
 //    private List< Drink> drinks;

@@ -14,7 +14,7 @@ public class Drink {
     public Drink() {
     }
 
-//    @Column(name = "drink_id")
+    @Column(name = "drink_id")
     private @Id @GeneratedValue Long id;
     private String name;
     private String quality;
@@ -22,11 +22,33 @@ public class Drink {
     private int  price;
     private String category;
 
+    private int consumedTime;
+
+
      @ManyToOne(fetch = FetchType.LAZY, optional = false)
      @JoinColumn(name = "cargo_id", nullable = false)
      @OnDelete(action = OnDeleteAction.CASCADE)
      @JsonIgnore
      private Cargo cargo;
+
+    public int getConsumedTime() {
+        return consumedTime;
+    }
+
+    public void setConsumedTime(int consumedTime) {
+        this.consumedTime = consumedTime;
+    }
+
+    public Drink(Long id, String name, String quality, Date expiredDate, int price, String category, int consumedTime, Cargo cargo) {
+        this.id = id;
+        this.name = name;
+        this.quality = quality;
+        this.expiredDate = expiredDate;
+        this.price = price;
+        this.category = category;
+        this.consumedTime = consumedTime;
+        this.cargo = cargo;
+    }
 
     public Cargo getCargo() {
         return cargo;
