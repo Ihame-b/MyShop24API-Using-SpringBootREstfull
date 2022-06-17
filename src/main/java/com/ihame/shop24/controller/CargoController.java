@@ -18,6 +18,12 @@ public class CargoController {
         this.repository = repository;
     }
 
+    //save
+    @PostMapping("/addcargo/")
+    Cargo save(@RequestBody Cargo newCargo){
+        return repository.save(newCargo);
+    }
+
     //display
     @GetMapping("/allcargo")
     List<Cargo> all(){
@@ -31,17 +37,11 @@ public class CargoController {
                 .orElseThrow(() -> new CargoNotFoundException(id));
     }
 
-    //save
-    @PostMapping("/addcargo/")
-    Cargo save(@RequestBody Cargo newCargo){
-        return repository.save(newCargo);
-    }
-
     //update
     @PutMapping("/updatecargo/{id}/")
     Optional<Cargo> update(@PathVariable Long id, @RequestBody Cargo newCargo){
         return   repository.findById(id).map(cargo -> {
-            cargo.setDeriveredDate(newCargo.getDeriveredDate());
+            cargo.setDeriverDate(newCargo.getDeriverDate());
             cargo.setStartDate(newCargo.getStartDate());
             cargo.setCompanyName(newCargo.getCompanyName());
 
@@ -54,7 +54,5 @@ public class CargoController {
     void delete(@PathVariable Long id){
         repository.deleteById(id);
     }
-
-
 
 }

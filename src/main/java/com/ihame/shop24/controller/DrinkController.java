@@ -30,6 +30,12 @@ public class DrinkController {
         this.drinkrepository = repository;
     }
 
+    //save
+    @PostMapping("/adddrink/")
+    Drink save(@RequestBody Drink newDrink){
+        return drinkrepository.save(newDrink);
+    }
+
     //display
     @GetMapping("/alldrinks")
     List<Drink> all(){
@@ -42,12 +48,6 @@ public class DrinkController {
         return drinkrepository.findById(id)
         .orElseThrow(() -> new DrinkNotFoundException(id));
     }
-
-//    //save
-//    @PostMapping("/adddrink/")
-//    Drink save(@RequestBody Drink newDrink){
-//        return repository.save(newDrink);
-//    }
 
     //update
     @PutMapping("/updatedrink/{id}/")
@@ -77,15 +77,14 @@ public class DrinkController {
         drinkrepository.deleteById(id);
     }
 
-
-
     // get drinks for specific Cargo
     @GetMapping("/getbycargo/{cargoId}/")
     public List<Drink> getDrinkByCargo(@PathVariable(value = "cargoId") Long cargoId) {
-            List <Drink> CC= drinkrepository.findByCargoId(cargoId);
-            return CC;
+            List <Drink> drinks1= drinkrepository.findByCargoId(cargoId);
+            return drinks1;
         }
 
+        // most five consumed drink
     @GetMapping("/mostconsumed/{timesofconsumed}/")
     public List<Drink> getAllSortConsumedDrink(
             @RequestParam(defaultValue = "2") Integer timesofconsumed)

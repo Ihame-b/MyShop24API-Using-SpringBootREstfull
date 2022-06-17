@@ -9,15 +9,14 @@ import javax.persistence.Id;
 public class Client {
 
 
-    private String name;
-    private String address;
     @Id
     @GeneratedValue()
     @Column(name = "client_id")
     private Long id;
-    private int Quntity;
-
+    private String ClientName;
     private String Productname;
+    private String address;
+    private int Quntity;
 
     public String getProductname() {
         return Productname;
@@ -30,12 +29,12 @@ public class Client {
     public Client() {
     }
 
-    public String getName() {
-        return name;
+    public String getClientName() {
+        return ClientName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClientName(String clientName) {
+        this.ClientName = clientName;
     }
 
     public String getAddress() {
@@ -63,7 +62,7 @@ public class Client {
     }
 
     public Client(String name, String address, Long id, int quntity, String productname) {
-        this.name = name;
+        this.ClientName = name;
         this.address = address;
         this.id = id;
         Quntity = quntity;

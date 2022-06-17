@@ -2,37 +2,21 @@ package com.ihame.shop24.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Cargo {
 
     public Cargo() {
     }
-    private String companyName;
     @Id
     @GeneratedValue()
     @Column(name = "cargo_id")
     private Long id;
+    private String companyName;
     private Date startDate;
-    private Date DeriveredDate;
+    private Date DeriverDate;
+    private String CargoAddress;
 
-
-    //relationship
-//    @OneToMany(mappedBy = "cargo")
-//    private List< Drink> drinks;
-//    private Set<Integer> drinksIds = new HashSet<Integer>();
-//    private Set<Drink> drinks = new HashSet<Drink>();
-
-    public Date getDeriveredDate() {
-        return DeriveredDate;
-    }
-
-    public void setDeriveredDate(Date deriveredDate) {
-        DeriveredDate = deriveredDate;
-    }
 
     public String getCompanyName() {
         return companyName;
@@ -58,22 +42,26 @@ public class Cargo {
         this.startDate = startDate;
     }
 
-//    public List<Drink> getDrinks() {
-//        return drinks;
-//    }
-
-    public Cargo(String companyName, Long id, Date startDate) {
-        this.companyName = companyName;
-        this.id = id;
-        this.startDate = startDate;
+    public String getCargoAddress() {
+        return CargoAddress;
+    }
+    public void setCargoAddress(String cargoAddress) {
+        CargoAddress = cargoAddress;
     }
 
-//    @PrePersist
-//    @PreUpdate
-//    public void populateCargo; {
-//        for(Drink drink : drinks)
-//            drinks.add(drink);
-//    }
+    public Date getDeriverDate() {
+        return DeriverDate;
+    }
 
+    public void setDeriverDate(Date deriverDate) {
+        DeriverDate = deriverDate;
+    }
+    public Cargo(String companyName, Long id, String cargoAddress, Date startDate, Date deriverDate) {
+        this.companyName = companyName;
+        this.id = id;
+        CargoAddress = cargoAddress;
+        this.startDate = startDate;
+        DeriverDate = deriverDate;
+    }
 
 }
