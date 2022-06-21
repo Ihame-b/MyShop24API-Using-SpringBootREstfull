@@ -11,6 +11,9 @@ public class Order1 {
     public Order1() {
     }
 
+    @Id
+    @GeneratedValue()
+    private Long id;
     @OneToMany(mappedBy = "order1", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Drink> drinks;
@@ -23,9 +26,7 @@ public class Order1 {
         this.drinks = drinks;
     }
 
-    @Id
-    @GeneratedValue()
-    private Long id;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
