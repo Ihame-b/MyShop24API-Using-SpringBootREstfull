@@ -64,4 +64,10 @@ public class Cargo {
         DeriverDate = deriverDate;
     }
 
+    public Cargo(String companyName, Date startDate, Date deriverDate, String cargoAddress) {
+        this.companyName = companyName;
+        this.startDate = startDate;
+        DeriverDate = deriverDate;
+        CargoAddress = cargoAddress;
+    }
 }

@@ -14,16 +14,16 @@ public class Client {
     @Column(name = "client_id")
     private Long id;
     private String ClientName;
-    private String Productname;
+    private String ProductName;
     private String address;
     private int Quntity;
 
-    public String getProductname() {
-        return Productname;
+    public String getProductName() {
+        return ProductName;
     }
 
-    public void setProductname(String productname) {
-        Productname = productname;
+    public void setProductName(String productName) {
+        ProductName = productName;
     }
 
     public Client() {
@@ -61,11 +61,18 @@ public class Client {
         Quntity = quntity;
     }
 
-    public Client(String name, String address, Long id, int quntity, String productname) {
+    public Client(String name, String address, Long id, int quntity, String productName) {
         this.ClientName = name;
         this.address = address;
         this.id = id;
         Quntity = quntity;
-        Productname =productname;
+        ProductName = productName;
+    }
+
+    public Client(String clientName, String productName, String address, int quntity) {
+        ClientName = clientName;
+        ProductName = productName;
+        this.address = address;
+        Quntity = quntity;
     }
 }

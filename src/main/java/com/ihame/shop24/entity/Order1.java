@@ -11,29 +11,51 @@ public class Order1 {
     public Order1() {
     }
 
-    @OneToMany(mappedBy = "order1", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<Drink> drinks;
-
-    public List<Drink> getDrinks() {
-        return drinks;
-    }
-
-    public void setDrinks(List<Drink> drinks) {
-        this.drinks = drinks;
-    }
+//    @OneToMany(mappedBy = "order1", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonIgnore
+//    private List<Drink> drinks;
+//
+//    public List<Drink> getDrinks() {
+//        return drinks;
+//    }
+//
+//    public void setDrinks(List<Drink> drinks) {
+//        this.drinks = drinks;
+//    }
 
     @Id
     @GeneratedValue()
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    Client client;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "client_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnore
+//    Client client;
+
+    private  int clientId;
+
+    @Column
+    @ElementCollection(targetClass = Long.class)
+    private List<Long> drinkId;
 
     private String name;
     private int TotalCost;
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public List<Long> getDrinkId() {
+        return drinkId;
+    }
+
+    public void setDrinkId(List<Long> drinkId) {
+        this.drinkId = drinkId;
+    }
 
     public Long getId() {
         return id;
@@ -45,14 +67,6 @@ public class Order1 {
 
     public String getName() {
         return name;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public void setName(String name) {
@@ -72,11 +86,13 @@ public class Order1 {
         TotalCost = totalCost;
     }
 
-    public Order1(List<Drink> drinks, Long id, Client client, String name, int totalCost) {
-        this.drinks = drinks;
-        this.id = id;
-        this.client = client;
+    public Order1(String name, int totalCost) {
         this.name = name;
         TotalCost = totalCost;
     }
+
+    public void addDrink(Long drinkId){
+        getDrinkId().add(drinkId);
+    }
 }
+

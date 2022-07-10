@@ -19,39 +19,39 @@ public class CargoController {
     }
 
     //save
-    @PostMapping("/addcargo/")
-    Cargo save(@RequestBody Cargo newCargo){
+    @PostMapping("/createCargo/")
+    Cargo CreateCargo(@RequestBody Cargo newCargo){
         return repository.save(newCargo);
     }
 
     //display
-    @GetMapping("/allcargo")
-    List<Cargo> all(){
+    @GetMapping("/getAllCargo")
+    List<Cargo> GetAllCargo(){
         return repository.findAll();
     }
 
     //find by id
-    @GetMapping("/cargo/{id}/")
-    Cargo getbyId(@PathVariable Long id){
+    @GetMapping("/getCargoById/{id}/")
+    Cargo GetCargoById(@PathVariable Long id){
         return repository.findById(id)
                 .orElseThrow(() -> new CargoNotFoundException(id));
     }
 
     //update
-    @PutMapping("/updatecargo/{id}/")
-    Optional<Cargo> update(@PathVariable Long id, @RequestBody Cargo newCargo){
+    @PutMapping("/updateCargoById/{id}/")
+    Optional<Cargo> UpdateCargoById(@PathVariable Long id, @RequestBody Cargo newCargo){
         return   repository.findById(id).map(cargo -> {
             cargo.setDeriverDate(newCargo.getDeriverDate());
             cargo.setStartDate(newCargo.getStartDate());
             cargo.setCompanyName(newCargo.getCompanyName());
-
+            repository.save(cargo);
             return cargo;
         });
     }
 
     //delete
-    @DeleteMapping("/daletecargo/{id}/")
-    void delete(@PathVariable Long id){
+    @DeleteMapping("/deleteCargoById/{id}/")
+    void DeleteCargoById(@PathVariable Long id){
         repository.deleteById(id);
     }
 
