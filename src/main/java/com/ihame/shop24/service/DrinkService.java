@@ -34,15 +34,6 @@ public class DrinkService {
     }
 
 
-    public List<Order1> most5OrderOfDifferentClient(int clientNumber) {
-        Pageable paging = PageRequest.of(0, clientNumber, Sort.by("id").descending());
-        Page<Order1> orderResult = orderRepository.findAll(paging);
-        if(orderResult.hasContent()) {
-            return orderResult.getContent();
-        } else {
-            return new ArrayList<Order1>();
-        }
-    }
 
 
 }

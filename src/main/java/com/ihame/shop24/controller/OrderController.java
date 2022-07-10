@@ -5,7 +5,6 @@ import com.ihame.shop24.dao.DrinkRepository;
 import com.ihame.shop24.dao.OrderRepository;
 import com.ihame.shop24.entity.Drink;
 import com.ihame.shop24.entity.Order1;
-import com.ihame.shop24.exception.CargoNotFoundException;
 import com.ihame.shop24.exception.DrinkNotFoundException;
 import com.ihame.shop24.exception.OrderNotFoundException;
 import com.ihame.shop24.service.DrinkService;
@@ -102,10 +101,10 @@ public class OrderController {
         });
     }
 
-    @GetMapping("/getMost5Order/{number}/")
-    public List<Order1> GetMost5Order(@RequestParam(defaultValue = "5") Integer number)
+    @GetMapping("/getMost5Order/")
+    public List<Order1> GetTop5Order()
     {
-        List<Order1> list = drinkService.most5OrderOfDifferentClient(number);
+        List<Order1> list = orderService.Top5OrderOfDifferentClient();
         return list;
     }
 

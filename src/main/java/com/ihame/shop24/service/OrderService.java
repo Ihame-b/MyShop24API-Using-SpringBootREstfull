@@ -8,6 +8,10 @@ import com.ihame.shop24.entity.Drink;
 import com.ihame.shop24.entity.Order1;
 import com.ihame.shop24.exception.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +53,17 @@ public class OrderService {
         }
 
         throw new ClientNotFoundException((long) clientId);
+    }
+
+
+    public List<Order1> Top5OrderOfDifferentClient() {
+        Pageable paging = PageRequest.of(0, 5, Sort.by("id").descending());
+        Page<Order1> orderResult = orderRepository.findAll(paging);
+        if(orderResult.hasContent()) {
+            return orderResult.getContent();
+        } else {
+            return new ArrayList<Order1>();
+        }
     }
 
         }
