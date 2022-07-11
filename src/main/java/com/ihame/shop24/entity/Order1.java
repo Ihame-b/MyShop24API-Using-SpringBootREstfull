@@ -1,8 +1,4 @@
 package com.ihame.shop24.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.List;
 
@@ -33,6 +29,8 @@ public class Order1 {
 //    Client client;
 
     private  int clientId;
+    private boolean completed=false;
+
 
     @Column
     @ElementCollection(targetClass = Long.class)
@@ -80,6 +78,15 @@ public class Order1 {
     public void setTotalCost(int totalCost) {
         TotalCost = totalCost;
     }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     public Order1(Long id, String name, int totalCost) {
         this.id = id;
         this.name = name;

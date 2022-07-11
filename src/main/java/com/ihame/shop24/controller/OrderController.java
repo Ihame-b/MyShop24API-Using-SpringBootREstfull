@@ -101,27 +101,26 @@ public class OrderController {
         });
     }
 
-    @GetMapping("/getMost5Order/")
+    @GetMapping("/getTop5Order/")
     public List<Order1> GetTop5Order()
     {
         List<Order1> list = orderService.Top5OrderOfDifferentClient();
         return list;
     }
 
+    //calculateTotalCost
+    @PostMapping("/calculateTotalCost/{orderId}/")
+    Optional<Order1> calculateTotalCost(@PathVariable Long orderId){
+        return   orderService.calculateTotalCost(orderId);
+    }
 
 
-//    @PostMapping("/createordertoclient/{client_id}/")
-//    public Order1 createDrink(@PathVariable(value = "client_id") Long clientId, @RequestBody Order1 orderRequest) {
-//        Order1 order1 = clientRepository.findById(clientId).map(client -> { orderRequest.setClient(client);
-//            return orderrepository.save(orderRequest);
-//        }).orElseThrow(() -> new CargoNotFoundException(clientId));
-//        return order1;
-//    }
+    //pay order
+    @PostMapping("/payed/{orderId}/")
+    Optional<Order1> payed(@PathVariable Long orderId){
+        return   orderService.orderPayed(orderId);
 
-//    @PostMapping("/createordertoclient/{client_id}/{drinks_ids}")
-//    Optional<Object> CreateOrderForSpecificClient(@PathVariable Long client_id, @PathVariable List<Long> drinks_ids, @RequestBody Order1 orderRequest){
-//        Optional<Object> order1= orderService.CreateOrderOfSpecificClient(client_id,drinks_ids,orderRequest);
-//        return order1;
-//    }
+    }
+
 
 }

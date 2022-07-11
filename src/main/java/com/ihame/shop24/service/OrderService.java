@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,20 +28,6 @@ public class OrderService {
     ClientRepository clientRepository;
     @Autowired
     DrinkRepository drinkRepository;
-
-//    public Optional<Object> CreateOrderOfSpecificClient(Long clientNumber, List<Long> drink_id, Order1 orderRequst) {
-//
-//        List< Optional <Drink>> drinkList= new ArrayList<>();
-//
-//        for (Long id: drink_id){
-//            drinkList.add(drinkRepository.findById(id));
-//        }
-//        Optional<Object> order1 = clientRepository.findById(clientNumber).map(client -> { orderRequst.setClient(client);
-////            orderRequst.setDrink(drinkList);
-//            return orderRepository.save(orderRequst);
-//        });
-//        return order1;
-//    }
 
     public Order1 CreateOrderOfSpecificClient(int clientId, Order1 orderRequest){
         List<Client> clientList=clientRepository.findAll();
@@ -66,5 +53,40 @@ public class OrderService {
         }
     }
 
-        }
+
+    public Optional<Order1> calculateTotalCost(long orderId) {
+
+        return   orderRepository.findById(orderId).map(order1 -> {
+
+
+            List<Long> drinkIdsOfOrder=  order1.getDrinkId();
+            int sum=0;
+            //find all drinks in that order by going through all drinks
+            for (Drink drk : drinkRepository.findAll()) {
+                if(drinkIdsOfOrder.contains(drk.getId())){
+                    int occurrences = Collections.frequency(drinkIdsOfOrder,drk.getId());
+                    sum=sum+drk.getPrice()*occurrences;
+                    //					order1.setTotalCost(order1.getTotalCost()+drk.getPrice());
+                }
+
+            }
+            order1.setTotalCost(sum);
+            orderRepository.save(order1);
+            return order1;
+        });
+
+    }
+
+    public Optional<Order1> orderPayed(long orderId) {
+
+        return   orderRepository.findById(orderId).map(order1 -> {
+            order1.setCompleted(true);
+            orderRepository.save(order1);
+            return order1;
+        });
+
+    }
+
+
+}
 

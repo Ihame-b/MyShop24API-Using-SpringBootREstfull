@@ -30,15 +30,15 @@ public class ClientController {
     }
 
     //find by id
-    @GetMapping("/getClientById/{id}/")
-    Client GetClientById(@PathVariable Long id){
-        return repository.findById(id)
-                .orElseThrow(() -> new ClientNotFoundException(id));
+    @GetMapping("/getClientById/{ClientId}/")
+    Client GetClientById(@PathVariable Long ClientId){
+        return repository.findById(ClientId)
+                .orElseThrow(() -> new ClientNotFoundException(ClientId));
     }
     //update
-    @PutMapping("/updateClientById/{id}/")
-    Optional<Client> UpdateClientById(@PathVariable Long id, @RequestBody Client newClient){
-        return   repository.findById(id).map(client -> {
+    @PutMapping("/updateClientById/{ClientId}/")
+    Optional<Client> UpdateClientById(@PathVariable Long ClientId, @RequestBody Client newClient){
+        return   repository.findById(ClientId).map(client -> {
            client.setClientName(newClient.getClientName());
            client.setAddress(newClient.getAddress());
            client.setQuntity(newClient.getQuntity());
@@ -49,8 +49,8 @@ public class ClientController {
     }
 
     //delete
-    @DeleteMapping("/deleteClientById/{id}/")
-    void DeleteClientById(@PathVariable Long id){
-        repository.deleteById(id);
+    @DeleteMapping("/deleteClientById/{ClientId}/")
+    void DeleteClientById(@PathVariable Long ClientId){
+        repository.deleteById(ClientId);
     }
 }

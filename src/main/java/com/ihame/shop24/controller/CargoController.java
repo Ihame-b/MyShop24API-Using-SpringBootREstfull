@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class CargoController {
 
-    private CargoRepository repository;
+    private final CargoRepository repository;
     public CargoController(CargoRepository repository) {
         this.repository = repository;
     }
@@ -31,16 +31,16 @@ public class CargoController {
     }
 
     //find by id
-    @GetMapping("/getCargoById/{id}/")
-    Cargo GetCargoById(@PathVariable Long id){
-        return repository.findById(id)
-                .orElseThrow(() -> new CargoNotFoundException(id));
+    @GetMapping("/getCargoById/{CargoId}/")
+    Cargo GetCargoById(@PathVariable Long CargoId){
+        return repository.findById(CargoId)
+                .orElseThrow(() -> new CargoNotFoundException(CargoId));
     }
 
     //update
-    @PutMapping("/updateCargoById/{id}/")
-    Optional<Cargo> UpdateCargoById(@PathVariable Long id, @RequestBody Cargo newCargo){
-        return   repository.findById(id).map(cargo -> {
+    @PutMapping("/updateCargoById/{CargoId}/")
+    Optional<Cargo> UpdateCargoById(@PathVariable Long CargoId, @RequestBody Cargo newCargo){
+        return   repository.findById(CargoId).map(cargo -> {
             cargo.setDeriverDate(newCargo.getDeriverDate());
             cargo.setStartDate(newCargo.getStartDate());
             cargo.setCompanyName(newCargo.getCompanyName());
@@ -50,9 +50,9 @@ public class CargoController {
     }
 
     //delete
-    @DeleteMapping("/deleteCargoById/{id}/")
-    void DeleteCargoById(@PathVariable Long id){
-        repository.deleteById(id);
+    @DeleteMapping("/deleteCargoById/{CargoId}/")
+    void DeleteCargoById(@PathVariable Long CargoId){
+        repository.deleteById(CargoId);
     }
 
 }

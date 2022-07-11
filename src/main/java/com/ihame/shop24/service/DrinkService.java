@@ -3,7 +3,6 @@ package com.ihame.shop24.service;
 import com.ihame.shop24.dao.DrinkRepository;
 import com.ihame.shop24.dao.OrderRepository;
 import com.ihame.shop24.entity.Drink;
-import com.ihame.shop24.entity.Order1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

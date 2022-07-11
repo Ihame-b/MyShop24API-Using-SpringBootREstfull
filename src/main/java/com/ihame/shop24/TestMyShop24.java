@@ -33,8 +33,8 @@ public class TestMyShop24 implements CommandLineRunner {
     // Testing Insert of Drink
     private void loadDrinkData() {
         if (drinkRepository.count() == 0) {
-            Drink drink1 = new Drink("orange","one",new Date(),700,"fanta",1);
-            Drink drink2 = new Drink("beer","one",new Date(),500,"skol",3);
+            Drink drink1 = new Drink("NonAlcoholDrink","one",new Date(),700,"fanta",1);
+            Drink drink2 = new Drink("Beer","one",new Date(),500,"skol",1);
             drinkRepository.save(drink1);
             drinkRepository.save(drink2);
         }
