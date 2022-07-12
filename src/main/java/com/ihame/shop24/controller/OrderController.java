@@ -40,11 +40,11 @@ public class OrderController {
         this.orderrepository = orderrepository;
     }
 
-    //save
-    @PostMapping("/createOrder/")
-    Order1 CreateOrder(@RequestBody Order1 newOrder){
-        return orderrepository.save(newOrder);
-    }
+//    //save
+//    @PostMapping("/createOrder/")
+//    Order1 CreateOrder(@RequestBody Order1 newOrder){
+//        return orderrepository.save(newOrder);
+//    }
 
     //display
     @GetMapping("/getAllOrder")
