@@ -66,8 +66,8 @@ public class TestMyShop24 implements CommandLineRunner {
 //     Testing Insert of Order
     private void loadOrderData() {
         if (orderRepository.count() == 0) {
-            Order1 order1 = new Order1("Fanta", 7000);
-            Order1 order2 = new Order1("Skol", 10000);
+            Order1 order1 = new Order1("Fanta", 0);
+            Order1 order2 = new Order1("Skol", 0);
             orderRepository.save(order1);
             orderRepository.save(order2);
         }
